@@ -35,6 +35,7 @@ namespace Host
                 var exitCamActor3 = system.ActorOf<ExitCamActor>("exitcam3");
 
                 var cjibActor = system.ActorOf<CJIBActor>("cjibactor");
+                //var cjibActor = system.ActorOf<PersistentCJIBActor>("cjibactor");
 
                 var simulationProps = Props.Create<SimulationActor>().WithRouter(new BroadcastPool(3));
                 var simulationActor = system.ActorOf(simulationProps);
