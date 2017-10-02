@@ -1,0 +1,47 @@
+﻿akka 
+{
+	stdout-loglevel = ERROR
+	loglevel = ERROR
+	log-config-on-start = on   
+
+	actor 
+	{
+		debug 
+		{  
+			  receive = on 
+			  autoreceive = on
+			  lifecycle = on
+			  event-stream = on
+			  unhandled = on
+		}
+
+		serializers 
+		{
+			hyperion = "Akka.Serialization.HyperionSerializer, Akka.Serialization.Hyperion" 
+		}
+		
+		serialization-bindings 
+		{ 
+			"System.Object" = hyperion 
+		}
+		
+		provider = remote
+
+		deployment 
+		{
+			/cjibactor 
+			{
+				remote = "akka.tcp://cjibsystem@localhost:9999"
+			}
+		}
+	}
+
+	remote 
+	{
+		dot-netty.tcp 
+		{
+			port = 0 
+			hostname = localhost
+		}
+	}
+}
