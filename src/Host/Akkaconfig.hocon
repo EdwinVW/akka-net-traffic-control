@@ -25,7 +25,7 @@
 			"System.Object" = hyperion 
 		}
 		
-		provider = remote
+		#provider = remote
 
 		deployment 
 		{
