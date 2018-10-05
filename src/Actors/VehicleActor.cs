@@ -32,6 +32,7 @@ namespace Actors
             Receive<VehicleEntryRegistered>(msg => Handle(msg));
             Receive<VehicleExitRegistered>(msg => Handle(msg));
             Receive<VehicleInfoAvailable>(msg => Handle(msg));
+            Receive<Shutdown>(msg => Handle(msg));
         }
 
         /// <summary>
