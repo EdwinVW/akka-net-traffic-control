@@ -1,10 +1,10 @@
-﻿using Actors;
+﻿using System;
+using System.IO;
 using Akka.Actor;
 using Akka.Configuration;
 using Akka.Routing;
 using Messages;
-using System;
-using System.IO;
+using Actors;
 
 namespace Host
 {
@@ -18,10 +18,7 @@ namespace Host
 
             using (ActorSystem system = ActorSystem.Create("TrafficControlSystem", config))
             {
-                (string RoadId, 
-                 int SectionLengthInKm, 
-                 int MaxAllowedSpeedInKmh, 
-                 int LegalCorrectionInKmh) roadInfo = ("A2", 10, 100, 5);
+                var roadInfo = new RoadInfo("A2", 10, 100, 5);
                 var trafficControlProps = Props.Create<TrafficControlActor>(roadInfo)
                     .WithRouter(new RoundRobinPool(3));
                 var trafficControlActor = system.ActorOf(trafficControlProps, "traffic-control");
@@ -45,6 +42,10 @@ namespace Host
 
                 simulationActor.Tell(new StartSimulation(15));
 
+                Console.ReadKey(true);
+                system.Terminate();
+
+                System.Console.WriteLine("Stopped. Press any key to exit.");
                 Console.ReadKey(true);
             }
         }

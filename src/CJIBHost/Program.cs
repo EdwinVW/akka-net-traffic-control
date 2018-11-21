@@ -18,6 +18,9 @@ namespace CJIBHost
             {
                 Console.WriteLine("Remote actorsystem for CJIB ready\n");
                 Console.ReadKey(true);
+
+                System.Console.WriteLine("Stopped. Press any key to exit.");
+                Console.ReadKey(true);
             }
         }
     }

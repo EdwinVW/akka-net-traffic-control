@@ -15,7 +15,7 @@ namespace Actors
         DateTime _entryTimestamp;
         DateTime? _exitTimestamp;
 
-        private (string RoadId, int SectionLengthInKm, int MaxAllowedSpeedInKmh, int LegalCorrectionInKmh) _roadInfo;
+        private RoadInfo _roadInfo;
 
         double _elapsedMinutes;
         double _avgSpeedInKmh;
@@ -23,7 +23,7 @@ namespace Actors
         IActorRef _rdwActor;
         ActorSelection _cjibActor;
 
-        public VehicleActor((string RoadId, int SectionLengthInKm, int MaxAllowedSpeedInKmh, int LegalCorrectionInKmh) roadInfo)
+        public VehicleActor(RoadInfo roadInfo)
         {
             // initialize state
             _roadInfo = roadInfo;

@@ -8,9 +8,9 @@ namespace Actors
     /// </summary>
     public class TrafficControlActor : ReceiveActor
     {
-        private (string RoadId, int SectionLengthInKm, int MaxAllowedSpeedInKmh, int LegalCorrectionInKmh) _roadInfo;
+        private RoadInfo _roadInfo;
 
-        public TrafficControlActor((string RoadId, int SectionLengthInKm, int MaxAllowedSpeedInKmh, int LegalCorrectionInKmh) roadInfo)
+        public TrafficControlActor(RoadInfo roadInfo)
         {
             // initialize state
             _roadInfo = roadInfo;
