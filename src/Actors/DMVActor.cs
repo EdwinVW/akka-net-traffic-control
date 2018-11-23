@@ -23,12 +23,19 @@ namespace Actors
         /// <param name="msg">The message to process.</param>
         private void Handle(GetVehicleInfo msg)
         {
-            // simulate web-service call
-            VehicleInfoAvailable info = new VehicleInfoAvailable(msg.VehicleId, GetRandomBrand(), GetRandomColor());
+            // simulate web-service call ...
+
+            // create event
+            string brand = GetRandomBrand();
+            string color = GetRandomColor();
+            VehicleInfoAvailable info = 
+                new VehicleInfoAvailable(msg.VehicleId, brand, color);
+
+            // send response to sender            
             Sender.Tell(info);
         }
 
-        #region Privite helper methods
+        #region Private helper methods
 
         private string[] _vehicleBrands = new string[] { "Mercedes", "Toyota", "Saab", "Audi", "BWW", "Volkswagen", "Seat", "Renault", "Skoda", "Kia", "Seat" };
         private string[] _vehicleColors = new string[] { "Black", "White", "Grey", "Red", "Blue", "Green", "Silver" };

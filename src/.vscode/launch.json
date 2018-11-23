@@ -38,13 +38,13 @@
             "name": "Start Host & CJCAHost",
             "configurations": [
                 {
-                    "name": "Start Host",
+                    "name": "Start CJCAHost",
                     "folder": "src"
                 },
                 {
-                    "name": "Start CJCAHost",
+                    "name": "Start Host",
                     "folder": "src"
-                }
+                }                
             ]
         }
     ]
