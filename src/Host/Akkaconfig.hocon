@@ -25,13 +25,13 @@
 			"System.Object" = hyperion 
 		}
 		
-		#provider = remote
+		provider = remote
 
 		deployment 
 		{
-			/cjibactor 
+			/cjcaactor 
 			{
-				remote = "akka.tcp://cjibsystem@localhost:9999"
+				remote = "akka.tcp://cjcasystem@localhost:9999"
 			}
 		}
 	}

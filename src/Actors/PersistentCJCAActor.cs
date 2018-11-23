@@ -1,4 +1,4 @@
-﻿using Akka.Actor;
+﻿using Akka.Persistence;
 using Messages;
 using System;
 
@@ -7,16 +7,36 @@ namespace Actors
     /// <summary>
     /// Actor that handles communication with the department of justice (for registering violations).
     /// </summary>
-    public class CJIBActor : ReceiveActor
+    public class PersistentCJCAActor : UntypedPersistentActor
     {
         private decimal _totalAmountFined = 0;
 
-        public CJIBActor()
-        {
-            // setup message-handling
-            Receive<RegisterSpeedingViolation>(msg => Handle(msg));
+        public override string PersistenceId => "PersistentCJCAActor";
 
-            Console.WriteLine($"Total amount fined: € {_totalAmountFined}\n");
+        public PersistentCJCAActor()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        protected override void OnCommand(object message)
+        {
+            if (message is RegisterSpeedingViolation rsv)
+            {
+                Persist(rsv, Handle);
+            }
+        }
+
+        protected override void OnRecover(object message)
+        {
+            if (message is RegisterSpeedingViolation rsv)
+            {
+                Handle(rsv);
+            }
+            else if (message is RecoveryCompleted)
+            {
+                ShowTotal();
+            }
         }
 
         /// <summary>
@@ -29,14 +49,25 @@ namespace Actors
 
             _totalAmountFined += fine;
 
-            string fineString = fine == 0 ? "tbd by the prosecutor" : fine.ToString();
-            System.Console.WriteLine($"Sent speeding ticket. Road: {msg.RoadId}, Licensenumber: {msg.VehicleId}" + 
-                $", Violation: {msg.ViolationInKmh} Km/h, Fine: € {fineString}");
+            if (!IsRecovering)
+            {
+                string fineString = fine == 0 ? "tbd by the prosecutor" : fine.ToString();
+                System.Console.WriteLine($"Sent speeding ticket. Road: {msg.RoadId}, Licensenumber: {msg.VehicleId}" +
+                    $", Violation: {msg.ViolationInKmh} Km/h, Fine: € {fineString}");
 
-            PrintAtLocation(0, 2, $"Total amount fined: € {_totalAmountFined}");
+                ShowTotal();
+            }
         }
 
         #region Private helper methods
+
+        /// <summary>
+        /// Show total amount fined.
+        /// </summary>
+        private void ShowTotal()
+        {
+            PrintAtLocation(0, 2, $"Total amount fined: € {_totalAmountFined}");
+        }
 
         /// <summary>
         /// Calculate fine based on the violation.

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Host", "Host\Host.csproj", "{42759D4B-0042-496D-B533-F4A57567CBCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CJIBHost", "CJIBHost\CJIBHost.csproj", "{FD210760-63BC-470B-997B-ABEC71E3C1F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CJCAHost", "CJCAHost\CJCAHost.csproj", "{FD210760-63BC-470B-997B-ABEC71E3C1F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistencePlugins", "PersistencePlugins\PersistencePlugins.csproj", "{250ADB7B-B96F-4FF5-8A1D-111BF373DD66}"
 EndProject

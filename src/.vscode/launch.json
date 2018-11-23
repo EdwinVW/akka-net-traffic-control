@@ -19,14 +19,14 @@
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
-            "name": "Start CJIBHost",
+            "name": "Start CJCAHost",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build CJIBHost",
+            "preLaunchTask": "build CJCAHost",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/CJIBHost/bin/Debug/netcoreapp2.1/CJIBHost.dll",
+            "program": "${workspaceFolder}/CJCAHost/bin/Debug/netcoreapp2.1/CJCAHost.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/CJIBHost",
+            "cwd": "${workspaceFolder}/CJCAHost",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
             "console": "externalTerminal",
             "stopAtEntry": false,
@@ -35,14 +35,14 @@
     ],
     "compounds": [
         {
-            "name": "Start Host & CJIBHost",
+            "name": "Start Host & CJCAHost",
             "configurations": [
                 {
                     "name": "Start Host",
                     "folder": "src"
                 },
                 {
-                    "name": "Start CJIBHost",
+                    "name": "Start CJCAHost",
                     "folder": "src"
                 }
             ]

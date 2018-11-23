@@ -20,8 +20,8 @@ namespace Actors
         double _elapsedMinutes;
         double _avgSpeedInKmh;
 
-        IActorRef _rdwActor;
-        ActorSelection _cjibActor;
+        IActorRef _dmvActor;
+        ActorSelection _cjcaActor;
 
         public VehicleActor(RoadInfo roadInfo)
         {
@@ -46,8 +46,8 @@ namespace Actors
             _vehicleId = msg.VehicleId;
             _entryTimestamp = msg.Timestamp;
 
-            _rdwActor = Context.ActorOf<RDWActor>();
-            _rdwActor.Tell(new GetVehicleInfo(_vehicleId));
+            _dmvActor = Context.ActorOf<DMVActor>();
+            _dmvActor.Tell(new GetVehicleInfo(_vehicleId));
         }
 
         /// <summary>
@@ -78,9 +78,9 @@ namespace Actors
                     $"(avg speed {_avgSpeedInKmh} km/h - {speedingViolation} km/h over speed-limit (after correction))");
 
                 // register speeding violation
-                _cjibActor = Context.ActorSelection("/user/cjibactor");
+                _cjcaActor = Context.ActorSelection("/user/cjcaactor");
                 var rsv = new RegisterSpeedingViolation(_vehicleId, _roadInfo.RoadId, speedingViolation);
-                _cjibActor.Tell(rsv);
+                _cjcaActor.Tell(rsv);
             }
             else
             {
@@ -97,9 +97,9 @@ namespace Actors
         /// <param name="msg">The message to handle.</param>
         private void Handle(Shutdown msg)
         {
-            if (_rdwActor != null)
+            if (_dmvActor != null)
             {
-                Context.Stop(_rdwActor);
+                Context.Stop(_dmvActor);
             }
             Context.Stop(Self);
         }

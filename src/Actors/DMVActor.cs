@@ -7,11 +7,11 @@ namespace Actors
     /// <summary>
     /// Actor that handles communication with the department of motorvehicles.
     /// </summary>
-    public class RDWActor : ReceiveActor
+    public class DMVActor : ReceiveActor
     {
         private Random _rnd = new Random();
 
-        public RDWActor()
+        public DMVActor()
         {
             // setup message-handling
             Receive<GetVehicleInfo>(msg => Handle(msg));

@@ -16,12 +16,12 @@
             }
         },
         {
-            "label": "build CJIBHost",
+            "label": "build CJCAHost",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/CJIBHost/CJIBHost.csproj"
+                "${workspaceFolder}/CJCAHost/CJCAHost.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

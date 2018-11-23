@@ -4,7 +4,7 @@ using Akka.Configuration;
 using System;
 using System.IO;
 
-namespace CJIBHost
+namespace CollectionAgencyHost
 {
     class Program
     {
@@ -14,9 +14,9 @@ namespace CJIBHost
 
             var config = ConfigurationFactory.ParseString(File.ReadAllText("akkaconfig.hocon"));
 
-            using (ActorSystem system = ActorSystem.Create("cjibsystem", config))
+            using (ActorSystem system = ActorSystem.Create("cjcasystem", config))
             {
-                Console.WriteLine("Remote actorsystem for CJIB ready\n");
+                Console.WriteLine("Remote actorsystem for the Central Judicial Collection Agency ready\n");
                 Console.ReadKey(true);
 
                 System.Console.WriteLine("Stopped. Press any key to exit.");
