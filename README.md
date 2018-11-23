@@ -8,9 +8,9 @@ This is an overview of the fictitious setup I used for this sample:
 
 There's 1 entry-camera and 1 exit-camera per lane. When a car passes an entry-camera, the license-number of the car is registered. 
 
-In the background, information about the vehicle  is retrieved from the DMV - the Department Of Motor-vehicles (or RDW in Dutch) by calling their web-service. 
+In the background, information about the vehicle  is retrieved from the Department Of Motor-vehicles - DMV (or RDW in Dutch) by calling their web-service. 
 
-When the car passes an exit-camera, this is registered by the system. The system then calculates the average speed of the car based on the entry- and exit-timestamp. If a speeding violation is detected, a message is sent to the Central Judicial Collection Agency - CJCA (or CJIB in Dutch) which will send a speeding-ticket to the driver of the vehicle.
+When the car passes an exit-camera, this is registered by the system. The system then calculates the average speed of the car based on the entry- and exit-timestamp. If a speeding violation is detected, a message is sent to the Central Judicial Collection Agency - CJCA (or CJIB in Dutch) will send a speeding-ticket to the driver of the vehicle.
 
 ### Actor hierarchy
 I've used an Actor model approach to build this sample using [Akka.NET](http://getakka.net). The actor hierarchy used in the sample looks like this:
