@@ -32,6 +32,7 @@ namespace Actors
             Receive<VehicleEntryRegistered>(msg => Handle(msg));
             Receive<VehicleExitRegistered>(msg => Handle(msg));
             Receive<VehicleInfoAvailable>(msg => Handle(msg));
+            Receive<MissingCarDetected>(msg => Handle(msg));
             Receive<Shutdown>(msg => Handle(msg));
         }
 
@@ -48,6 +49,10 @@ namespace Actors
 
             _dmvActor = Context.ActorOf<DMVActor>();
             _dmvActor.Tell(new GetVehicleInfo(_vehicleId));
+
+            // set a time-out after wich we consider a car missing
+            Context.System.Scheduler.ScheduleTellOnce(
+                TimeSpan.FromMinutes(5), Self, new MissingCarDetected(msg.VehicleId), Self);
         }
 
         /// <summary>
@@ -102,6 +107,17 @@ namespace Actors
                 Context.Stop(_dmvActor);
             }
             Context.Stop(Self);
+        }
+
+        /// <summary>
+        /// Handle MissingCarDetected message.
+        /// </summary>
+        /// <param name="msg">The message to handle.</param>
+        private void Handle(MissingCarDetected msg)
+        {
+            FluentConsole.Magenta.Line($"Vehicle '{msg.VehicleId}' is missing. Sending road assistance.");
+
+            // ...
         }
 
         #region Private helper methods
