@@ -15,7 +15,7 @@
 			  unhandled = on
 		}
 
-		provider = remote
+		#provider = remote
 
 		deployment 
 		{
