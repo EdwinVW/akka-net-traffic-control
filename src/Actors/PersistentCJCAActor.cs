@@ -21,21 +21,25 @@ namespace Actors
 
         protected override void OnCommand(object message)
         {
-            if (message is RegisterSpeedingViolation rsv)
+            switch(message)
             {
-                Persist(rsv, Handle);
-            }
+                case RegisterSpeedingViolation rsv:
+                    Persist(rsv, Handle);
+                    break;
+
+            }            
         }
 
         protected override void OnRecover(object message)
         {
-            if (message is RegisterSpeedingViolation rsv)
+            switch(message)
             {
-                Handle(rsv);
-            }
-            else if (message is RecoveryCompleted)
-            {
-                ShowTotal();
+                case RegisterSpeedingViolation rsv:
+                    Handle(rsv);
+                    break;
+                case RecoveryCompleted rc:
+                    ShowTotal();
+                    break;
             }
         }
 

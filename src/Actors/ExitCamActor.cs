@@ -6,7 +6,7 @@ namespace Actors
     /// <summary>
     /// Actor that represents an exit camera.
     /// </summary>
-    public class ExitCamActor : ReceiveActor
+    public class ExitCamActor : UntypedActor
     {
         private ActorSelection _trafficControlActor;
 
@@ -14,10 +14,21 @@ namespace Actors
         {
             // initialize state
             _trafficControlActor = Context.System.ActorSelection("/user/traffic-control");
-
-            // setup message-handling
-            Receive<VehiclePassed>(msg => Handle(msg));
         }
+
+        /// <summary>
+        /// Handle received message.
+        /// </summary>
+        /// <param name="message">The message to handle.</param>
+        protected override void OnReceive(object message)
+        {
+            switch(message)
+            {
+                case VehiclePassed vp:
+                    Handle(vp);
+                    break;
+            }
+        }   
 
         /// <summary>
         /// Handle VehiclePassed message

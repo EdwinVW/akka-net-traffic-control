@@ -7,7 +7,7 @@ namespace Actors
     /// <summary>
     /// Actor that represents a registered vehicle.
     /// </summary>
-    public class VehicleActor : ReceiveActor
+    public class VehicleActor : UntypedActor
     {
         string _vehicleId;
         string _brand = "Unknown color";
@@ -27,14 +27,33 @@ namespace Actors
         {
             // initialize state
             _roadInfo = roadInfo;
-
-            // setup message-handling
-            Receive<VehicleEntryRegistered>(msg => Handle(msg));
-            Receive<VehicleExitRegistered>(msg => Handle(msg));
-            Receive<VehicleInfoAvailable>(msg => Handle(msg));
-            Receive<MissingCarDetected>(msg => Handle(msg));
-            Receive<Shutdown>(msg => Handle(msg));
         }
+
+        /// <summary>
+        /// Handle received message.
+        /// </summary>
+        /// <param name="message">The message to handle.</param>
+        protected override void OnReceive(object message)
+        {
+            switch(message)
+            {
+                case VehicleEntryRegistered ver:
+                    Handle(ver);
+                    break;
+                case VehicleExitRegistered vxr:
+                    Handle(vxr);
+                    break;            
+                case VehicleInfoAvailable via:
+                    Handle(via);
+                    break; 
+                case MissingCarDetected mcd:
+                    Handle(mcd);
+                    break;                        
+                case Shutdown sd:
+                    Handle(sd);
+                    break;                        
+            }
+        }         
 
         /// <summary>
         /// Handle VehicleEntryRegistered message.

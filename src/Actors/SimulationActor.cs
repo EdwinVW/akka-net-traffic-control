@@ -7,7 +7,7 @@ namespace Actors
     /// <summary>
     /// Actor that simulates traffic.
     /// </summary>
-    public class SimulationActor : ReceiveActor
+    public class SimulationActor : UntypedActor
     {
         private int _numberOfCars;
         private int _carsSimulated;
@@ -18,13 +18,25 @@ namespace Actors
         private int _minExitDelayInS = 5;
         private int _maxExitDelayInS = 7;
 
-        public SimulationActor()
+        /// <summary>
+        /// Handle received message.
+        /// </summary>
+        /// <param name="message">The message to handle.</param>
+        protected override void OnReceive(object message)
         {
-            // setup message-handling
-            Receive<StartSimulation>(msg => Handle(msg));
-            Receive<SimulatePassingCar>(msg => Handle(msg));
-            Receive<Shutdown>(_ => { Context.Stop(Self); });
-        }
+            switch(message)
+            {
+                case StartSimulation ss:
+                    Handle(ss);
+                    break;
+                case SimulatePassingCar spc:
+                    Handle(spc);
+                    break;            
+                case Shutdown sd:
+                    Context.Stop(Self);
+                    break;
+            }
+        }   
 
         /// <summary>
         /// Handle StartSimulation message.

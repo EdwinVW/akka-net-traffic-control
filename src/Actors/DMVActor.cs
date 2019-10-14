@@ -7,14 +7,22 @@ namespace Actors
     /// <summary>
     /// Actor that handles communication with the department of motorvehicles.
     /// </summary>
-    public class DMVActor : ReceiveActor
+    public class DMVActor : UntypedActor
     {
         private Random _rnd = new Random();
 
-        public DMVActor()
+        /// <summary>
+        /// Handle received message.
+        /// </summary>
+        /// <param name="message">The message to handle.</param>
+        protected override void OnReceive(object message)
         {
-            // setup message-handling
-            Receive<GetVehicleInfo>(msg => Handle(msg));
+            switch(message)
+            {
+                case GetVehicleInfo gvi:
+                    Handle(gvi);
+                    break;
+            }
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace Actors
     /// <summary>
     /// Actor that handles traffic control.
     /// </summary>
-    public class TrafficControlActor : ReceiveActor
+    public class TrafficControlActor : UntypedActor
     {
         private RoadInfo _roadInfo;
 
@@ -14,11 +14,24 @@ namespace Actors
         {
             // initialize state
             _roadInfo = roadInfo;
-
-            // setup message-handling
-            Receive<VehicleEntryRegistered>(msg => Handle(msg));
-            Receive<VehicleExitRegistered>(msg => Handle(msg));
         }
+
+        /// <summary>
+        /// Handle received message.
+        /// </summary>
+        /// <param name="message">The message to handle.</param>
+        protected override void OnReceive(object message)
+        {
+            switch(message)
+            {
+                case VehicleEntryRegistered ver:
+                    Handle(ver);
+                    break;
+                case VehicleExitRegistered vxr:
+                    Handle(vxr);
+                    break;            
+            }
+        } 
 
         /// <summary>
         /// Handle VehicleEntryRegistered message.

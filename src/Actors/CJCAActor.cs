@@ -7,16 +7,27 @@ namespace Actors
     /// <summary>
     /// Actor that handles communication with the department of justice (for registering violations).
     /// </summary>
-    public class CJCAActor : ReceiveActor
+    public class CJCAActor : UntypedActor
     {
         private decimal _totalAmountFined = 0;
 
         public CJCAActor()
         {
-            // setup message-handling
-            Receive<RegisterSpeedingViolation>(msg => Handle(msg));
-
             Console.WriteLine($"Total amount fined: € {_totalAmountFined}\n");
+        }
+
+        /// <summary>
+        /// Handle received message.
+        /// </summary>
+        /// <param name="message">The message to handle.</param>
+        protected override void OnReceive(object message)
+        {
+            switch(message)
+            {
+                case RegisterSpeedingViolation rsv:
+                    Handle(rsv);
+                    break;
+            }
         }
 
         /// <summary>
