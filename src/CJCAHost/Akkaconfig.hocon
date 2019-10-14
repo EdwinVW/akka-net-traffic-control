@@ -14,16 +14,6 @@
 			  event-stream = on
 			  unhandled = on
 		}
-
-		serializers 
-		{
-			hyperion = "Akka.Serialization.HyperionSerializer, Akka.Serialization.Hyperion" 
-		}
-	
-		serialization-bindings 
-		{ 
-			"System.Object" = hyperion 
-		}
 		
 		provider = remote
 	}
