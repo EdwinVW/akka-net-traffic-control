@@ -37,7 +37,7 @@ namespace Actors
                 case RegisterSpeedingViolation rsv:
                     Handle(rsv);
                     break;
-                case RecoveryCompleted rc:
+                case RecoveryCompleted:
                     ShowTotal();
                     break;
             }
