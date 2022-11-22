@@ -1,0 +1,8 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="Akka" Version="1.4.46" />
+    <PackageVersion Include="Akka.Remote" Version="1.4.46" />
+    <PackageVersion Include="Akka.Persistence" Version="1.4.46" />
+    <PackageVersion Include="FluentConsole" Version="0.8.4-netstandard-160712" />
+  </ItemGroup>
+</Project>

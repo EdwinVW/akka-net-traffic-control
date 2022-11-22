@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build Host",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Host/bin/Debug/netcoreapp2.1/Host.dll",
+            "program": "${workspaceFolder}/Host/bin/Debug/net6.0/Host.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Host",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
@@ -24,7 +24,7 @@
             "request": "launch",
             "preLaunchTask": "build CJCAHost",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/CJCAHost/bin/Debug/netcoreapp2.1/CJCAHost.dll",
+            "program": "${workspaceFolder}/CJCAHost/bin/Debug/net6.0/CJCAHost.dll",
             "args": [],
             "cwd": "${workspaceFolder}/CJCAHost",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window

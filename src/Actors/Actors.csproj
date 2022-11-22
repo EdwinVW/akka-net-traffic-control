@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>    
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Akka" Version="1.4.43" />
-    <PackageReference Include="Akka.Persistence" Version="1.4.43" />
-    <PackageReference Include="FluentConsole" Version="0.8.4-netstandard-160712" />
+    <PackageReference Include="Akka" />
+    <PackageReference Include="Akka.Persistence" />
+    <PackageReference Include="FluentConsole" />
   </ItemGroup>
 
   <ItemGroup>
